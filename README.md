@@ -38,23 +38,18 @@ To set up the environment, you can use the following steps:
 
    Install all required libraries using `pip`:
    ```bash
-   pip install -r requirements.txt
-
- 
-Alternatively, install each package manually:
-
-  ```bash
-  pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-  pip install tensorboard
-  pip install dgl -f https://data.dgl.ai/wheels/torch-2.1/cu118/repo.html
-  pip install iTransformer
-  pip install matplotlib
-  pip install tables
-  ```
+   pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+   pip install tensorboard
+   pip install dgl -f https://data.dgl.ai/wheels/torch-2.1/cu118/repo.html
+   pip install iTransformer
+   pip install matplotlib
+   pip install tables
 
   
 ## Usage
  ## Dataset Preparation
+  Download the required datasets.
+
 Prepare datasets using the following scripts:
 MATE-LA and PEMS-04:
 ```bash
