@@ -47,29 +47,29 @@ To set up the environment, you can use the following steps:
 
   
 ## Usage
- ## Dataset Preparation
+ ## Dataset Preparation**:
   Download the required datasets.
 
-Prepare datasets using the following scripts:
-MATE-LA and PEMS-04:
-```bash
-python scripts/generate_training_data.py
-```
+  Prepare datasets using the following scripts:
+  MATE-LA and PEMS-04:
+  ```bash
+  python scripts/generate_training_data.py
+  ```
+  
+  PEMS03, PEMS04, PEMS07, and PEMS08:
+  
+  ```bash
+  python scripts/generate_training_data_pems0408.py
+  ```
 
-PEMS03, PEMS04, PEMS07, and PEMS08:
-
-```bash
-python scripts/generate_training_data_pems0408.py
-```
-
- ## Training and Testing
-Train the model: Run the run.sh script to start training:
-```bash
-sh run.sh
-```
-
-Test the model: Use the test.sh script to evaluate the trained model:
-
-```bash
-sh test.sh
-```
+ ## Training and Testing**:
+  Train the model: Run the run.sh script to start training:
+  ```bash
+  sh run.sh
+  ```
+  
+  Test the model: Use the test.sh script to evaluate the trained model:
+  
+  ```bash
+  sh test.sh
+  ```
