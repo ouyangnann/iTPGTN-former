@@ -1,0 +1,46 @@
+base_dir: data
+log_level: INFO
+data:
+  batch_size: 64
+  dataset_dir: data/PEMS04
+  graph_pkl_filename: data/sensor_graph/adj_mx_04.pkl
+  use_graph: True
+  test_batch_size: 64
+  scaler_type: Standard
+model:
+  batch_size: 64
+  test_batch_size: 64
+  seq_len: 12
+  horizon: 12
+  dropout: 0.1
+  filter_type: dual_random_walk
+  num_rnn_layers: 2
+  rnn_units: 16
+
+  input_dim: 1
+  num_nodes: 307
+  output_dim: 1
+  num_encoder_layers: 3
+  num_decoder_layers: 3
+  num_g_layers: 3
+  output_dim: 1
+  model_dim: 32
+  dec_dim: 32
+  g_dim: 16
+  num_heads: 16
+
+train:
+  base_lr: 1.0e-3
+  epoch: 0
+  epochs: 200  #原始100
+  log_dir:
+  max_grad_norm: 5
+  model_filename:
+  optimizer: adam
+  lr_patience: 20
+  stop_patience: 50
+  steps:
+  - 50
+  - 100
+  - 150
+  test_every_n_epochs: 10

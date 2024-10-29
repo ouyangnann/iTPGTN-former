@@ -1,0 +1,56 @@
+base_dir: data
+log_level: INFO
+data:
+  batch_size: 64
+  dataset_dir: data/PEMS-BAY
+  graph_pkl_filename: data/sensor_graph/adj_mx_bay.pkl
+  use_graph: True
+  test_batch_size: 64
+  scaler_type: Standard
+model:
+  seq_len: 12
+  horizon: 3
+  cl_decay_steps: 2000
+  input_dim: 1
+  l1_decay:  1.0e-6
+  max_diffusion_step: 2
+  num_nodes: 325
+  num_encoder_layers: 1
+  num_decoder_layers: 1
+  num_g_layers: 1
+  output_dim: 1
+  model_dim: 64
+  dec_dim: 64
+  g_dim: 8
+  use_curriculum_learning: true
+  edge_feat: true
+  residual: true
+  layer_norm: true
+  use_bias: true
+  g_threshold: 0
+  num_heads: 8
+  g_heads: 4
+  self_loop: false
+  lap_pos_enc: false
+  wl_pos_enc: false
+  full_graph: true
+train:
+  base_lr: 1.0e-3
+  dropout: 0.1
+  epoch: 0
+  epochs: 500  #原始100
+  epsilon: 0.0001
+  log_dir:
+  lr_decay_ratio: 0.1
+  l2_weight: 1.0e-5
+  max_grad_norm: 5
+  max_to_keep: 2000
+  min_learning_rate: 1.0e-05
+  model_filename:
+  optimizer: adam
+  lr_patience: 20
+  stop_patience: 50
+  steps:
+  - 50
+  - 300
+  test_every_n_epochs: 10

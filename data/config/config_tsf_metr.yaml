@@ -1,0 +1,50 @@
+base_dir: data
+log_level: INFO
+data:
+  batch_size: 128  #原始64
+  dataset_dir: data/METR-LA
+  graph_pkl_filename: data/sensor_graph/adj_mx.pkl
+  use_graph: False
+  val_batch_size: 128
+  test_batch_size: 128
+  seq_len: 12
+  horizon: 12
+model:
+  seq_len: 12
+  horizon: 12
+  cl_decay_steps: 2000
+  input_dim: 2
+  model_dim: 256
+  l1_decay: 1.0e-5
+  max_diffusion_step: 2
+  num_nodes: 207
+  num_rnn_layers: 2
+  output_dim: 1
+  rnn_units: 128
+  use_curriculum_learning: False
+  num_encoder_layers: 3
+  num_decoder_layers: 3
+  num_heads: 4
+train:
+  base_lr: 1.0e-3
+  dropout: 0.5
+  epoch: 0
+  epochs: 2000  #原始100
+  epsilon: 1.0e-6
+  global_step: 0
+  log_dir: 
+  lr_decay_ratio: 0.1
+  l2_weight: 1.0e-5
+  max_grad_norm: 5
+  max_to_keep: 1000
+  min_learning_rate: 1.0e-06
+  model_filename:
+  optimizer: adam
+  lr_patience: 200
+  stop_patience: 1000
+  steps:
+  - 20
+  - 30
+  - 40
+  - 50
+  test_every_n_epochs: 10
