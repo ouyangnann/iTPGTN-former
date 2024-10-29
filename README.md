@@ -54,12 +54,14 @@ To set up the environment, you can use the following steps:
   MATE-LA and PEMS-04:
   ```bash
   python scripts/generate_training_data.py
+  python scripts/gen_adj_mx.py 
   ```
   
   PEMS03, PEMS04, PEMS07, and PEMS08:
   
   ```bash
   python scripts/generate_training_data_pems0408.py
+  python scripts/gen_adj_mx0408.py 
   ```
 
  ## Training and Testing**:
