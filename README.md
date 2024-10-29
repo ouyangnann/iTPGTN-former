@@ -47,7 +47,7 @@ To set up the environment, you can use the following steps:
 
   
 ## Usage
- ## Dataset Preparation**:
+ ## Dataset Preparation:
   Download the required datasets.
 
   Prepare datasets using the following scripts:
@@ -64,7 +64,7 @@ To set up the environment, you can use the following steps:
   python scripts/gen_adj_mx0408.py 
   ```
 
- ## Training and Testing**:
+ ## Training and Testing:
   Train the model: Run the run.sh script to start training:
   ```bash
   sh run.sh
