@@ -31,8 +31,9 @@ To set up the environment, you can use the following steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your_username/traffic-prediction.git
-   cd traffic-prediction
+   git clone https://github.com/ouyangnann/iTPGTN-former.git
+   cd iTPGTN-former
+
    
 2. **Install required packages**:
 
