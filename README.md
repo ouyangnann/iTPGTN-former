@@ -31,8 +31,9 @@ To set up the environment, you can use the following steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your_username/traffic-prediction.git
-   cd traffic-prediction
+   git clone https://github.com/ouyangnann/iTPGTN-former.git
+   cd iTPGTN-former
+
    
 2. **Install required packages**:
 
@@ -47,22 +48,24 @@ To set up the environment, you can use the following steps:
 
   
 ## Usage
- ## Dataset Preparation**:
+ ## Dataset Preparation:
   Download the required datasets.
 
   Prepare datasets using the following scripts:
   MATE-LA and PEMS-04:
   ```bash
   python scripts/generate_training_data.py
+  python scripts/gen_adj_mx.py 
   ```
   
   PEMS03, PEMS04, PEMS07, and PEMS08:
   
   ```bash
   python scripts/generate_training_data_pems0408.py
+  python scripts/gen_adj_mx0408.py 
   ```
 
- ## Training and Testing**:
+ ## Training and Testing:
   Train the model: Run the run.sh script to start training:
   ```bash
   sh run.sh
