@@ -54,16 +54,17 @@ To set up the environment, you can use the following steps:
   Prepare datasets using the following scripts:
   MATE-LA and PEMS-04:
   ```bash
-  python scripts/generate_training_data.py
+  python scripts/generate_training_data_metr_in_ou.py --seq_len 12 --horizon 12
   python scripts/gen_adj_mx.py 
   ```
   
   PEMS03, PEMS04, PEMS07, and PEMS08:
   
   ```bash
-  python scripts/generate_training_data_pems0408.py
+  python scripts/generate_training_data_pems0408_in_ou.py --seq_len 12 --horizon 12
   python scripts/gen_adj_mx0408.py 
   ```
+  The seq_len and horizon are optional.
 
  ## Training and Testing:
   Train the model: Run the run.sh script to start training:
