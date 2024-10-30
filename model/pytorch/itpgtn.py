@@ -5,7 +5,7 @@ import math
 from model.pytorch.graph_transformer_edge_layer import GraphTransformerLayer
 import torch.nn.functional as F
 import dgl
-from model.pytorch.tsf_cell import TransformerEncoderCell, TransformerDecoderCell, PositionalEncoding
+
 from lib import utils
 from scipy.sparse.linalg import eigsh
 import scipy.sparse as sp

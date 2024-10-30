@@ -7,8 +7,7 @@ import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
 from lib import utils,metrics
 from model.pytorch.dcrnn_model import DCRNNModel
-from model.pytorch.tsf_model import TSFModel, count_parameters
-from model.pytorch.gtn_model import GTNModel
+
 from model.pytorch.itgtn import iTGTNModel
 from model.pytorch.itn import iTNModel
 from model.pytorch.itgtn import iTGTNModel
@@ -57,8 +56,7 @@ class ModelsSupervisor:
 
         # setup model
         model_list={'dcrnn':DCRNNModel,
-                    'tsf':TSFModel,
-                    'gtn':GTNModel,
+       
                     'itn':iTNModel,
                     'itgtn':iTGTNModel,
                     'itgcn':iTGCNModel,
