@@ -177,7 +177,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--models', default=None, type=str, help='MODEL: TSF|DCRNN|LSTM|TGTN')
+    parser.add_argument('--models', default=None, type=str, help='MODEL: MODEL: iTPGTN|iTCTN|iTGTN|iTN|DCRNN')
     parser.add_argument('--config_filename', default=None, type=str, help='Configuration filename for restoring the model.')
     parser.add_argument('--use_cpu_only', default=False, type=bool, help='Set to true to only use cpu.')
     parser.add_argument('--load_pretrained', default=True, type=bool, help='Whether to load a pretrained model.')

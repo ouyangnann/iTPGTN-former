@@ -203,7 +203,7 @@ class GraphTransformerLayer(nn.Module):
             with g.local_scope():
                 g.ndata['h'] = h
                 path_embeddings = []
-                for length in range(1, 3):  # 假设最大路径长度为5
+                for length in range(1, 3):  # 枚举最大路径长度
                     g.update_all(dgl.function.copy_u('h', 'm'),
                                  dgl.function.sum('m', 'h'))
                     path_embeddings.append(self.gaussian_kernel(g.ndata['h']))
