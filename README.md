@@ -11,7 +11,7 @@ This repository contains the code for the paper **"Graph Transformer-based Dynam
   - [Training and Testing](#training-and-testing)
 
 ## Introduction
-We propose a dynamic edge interaction encoding method for spatio-temporal features based on inverse Transformer (iTransformer) and graph Transformer, named iTPGT-former.
+We propose a dynamic edge interaction encoding method for spatio-temporal features based on inverse Transformer (iTransformer) and Graph Transformer, named iTPGTN-former.
 
 ## Environment
 The code is developed and tested on **Ubuntu 20.04**. The required libraries and their versions are as follows:
