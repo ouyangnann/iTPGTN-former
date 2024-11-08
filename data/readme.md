@@ -28,6 +28,7 @@ Once the datasets are downloaded, the project folder structure should look like 
 ├── config/
 ├── sensor_graph/   
 ```
+ **Note** Some files need to be renamed.
 
 # Run Data Preparation
 After downloading the datasets and ensuring the above file structure, you need to run the data preparation code to format the data for use in your model.
