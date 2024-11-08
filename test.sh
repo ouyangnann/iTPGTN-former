@@ -1,1 +1,1 @@
-python model/pytorch/models_test.py --models itpgtn --config_filename  data/config/config_itpgtn_metr.yaml --cuda cuda:0 --pretrained_model_dir /home/allen/project/traffic_flow/data/log/itpgtn_sl/20240609_171602_itpgtn_sl_l_12_h_12_lr_0.001_bs_64/models/epo19.tar
+python model/pytorch/models_test.py --models itpgtn --config_filename  data/config/config_itpgtn_metr.yaml --cuda cuda:0 --pretrained_model_dir data/log/itpgtn/20241018_103111_itpgtn_l_12_h_12_lr_0.001_bs_64/models/epo14.tar
