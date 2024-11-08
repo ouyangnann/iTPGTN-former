@@ -36,6 +36,7 @@ To set up the environment, you can use the following steps:
    ```
    
 2. **Install required packages**:
+
    Create a conda environment with python 3.8:
    ```bash
    conda create --name itpgtn python=3.8
