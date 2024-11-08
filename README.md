@@ -36,9 +36,14 @@ To set up the environment, you can use the following steps:
    ```
    
 2. **Install required packages**:
-
+   Create a conda environment with python 3.8:
+   ```bash
+   conda create --name itpgtn python=3.8
+   ```
+   
    Install all required libraries using `pip`:
    ```bash
+   conda activate itpgtn
    pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
    pip install tensorboard
    pip install dgl -f https://data.dgl.ai/wheels/torch-2.1/cu118/repo.html
