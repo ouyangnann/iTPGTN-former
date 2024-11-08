@@ -33,7 +33,7 @@ To set up the environment, you can use the following steps:
    ```bash
    git clone https://github.com/ouyangnann/iTPGTN-former.git
    cd iTPGTN-former
-
+   ```
    
 2. **Install required packages**:
 
@@ -45,7 +45,7 @@ To set up the environment, you can use the following steps:
    pip install iTransformer
    pip install matplotlib
    pip install tables
-
+   ```
   
 ## Usage
  ## Dataset Preparation:
