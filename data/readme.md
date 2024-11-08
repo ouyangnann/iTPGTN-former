@@ -31,4 +31,4 @@ Once the datasets are downloaded, the project folder structure should look like 
  ***Note:*** Some downloaded files need to be renamed.
 
 # Run Data Preparation
-After downloading the datasets and ensuring the above file structure, you need to run the data preparation code to format the data for use in your model.
+After downloading the datasets and ensuring the above file structure, you need to run the data processing code to format the data for use in the model.
