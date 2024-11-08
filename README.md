@@ -56,9 +56,9 @@ To set up the environment, you can use the following steps:
 ## Usage
  ## Dataset Preparation:
  
-  **Download the required datasets. See data/readme.md.**
+  **First, download the required datasets. See data/readme.md.**
 
-  Prepare datasets using the following scripts:
+  Then, process the dataset using the following command:
   
   MATE-LA and PEMS-04:
   ```bash
@@ -72,7 +72,7 @@ To set up the environment, you can use the following steps:
   python scripts/generate_training_data_pems0408_in_ou.py --seq_len 12 --horizon 12
   python scripts/gen_adj_mx0408.py 
   ```
-  The seq_len and horizon are optional.
+  For different prediction horizons, seq_len and horizon are optional.
 
  ## Training and Testing:
   Train the model: Run the run.sh script to start training:
