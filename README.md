@@ -58,6 +58,7 @@ To set up the environment, you can use the following steps:
   Download the required datasets. See data/readme.md.
 
   Prepare datasets using the following scripts:
+  
   MATE-LA and PEMS-04:
   ```bash
   python scripts/generate_training_data_metr_in_ou.py --seq_len 12 --horizon 12
