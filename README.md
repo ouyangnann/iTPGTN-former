@@ -60,7 +60,7 @@ To set up the environment, you can use the following steps:
 
   Then, process the dataset using the following command:
   
-  MATE-LA and PEMS-04:
+  METR-LA and PEMS-04:
   ```bash
   python scripts/generate_training_data_metr_in_ou.py --seq_len 12 --horizon 12
   python scripts/gen_adj_mx.py 
