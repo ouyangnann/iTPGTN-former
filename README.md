@@ -49,7 +49,7 @@ To set up the environment, you can use the following steps:
   
 ## Usage
  ## Dataset Preparation:
-  Download the required datasets.
+  Download the required datasets. See data/readme.md.
 
   Prepare datasets using the following scripts:
   MATE-LA and PEMS-04:
