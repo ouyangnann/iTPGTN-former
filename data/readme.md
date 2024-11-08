@@ -23,6 +23,8 @@ Once the datasets are downloaded, the project folder structure should look like 
 ├── PEMS08/  
 │   ├── distance.csv   
 │   └── pems08.npz
+├── config/
+├── sensor_graph/   
 ```
 
 # Run Data Preparation
