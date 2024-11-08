@@ -102,5 +102,3 @@
 2024-10-18 10:36:06,586 - model.pytorch.models_supervisor - INFO - Epoch [19/200] (7500) train_mae: 2.7684,   lr: 0.00100000, test_mae: 3.0392, rmse: 5.9134, mape:0.083913,14.2s
 2024-10-18 10:36:06,593 - model.pytorch.models_supervisor - INFO - Saved model at 19
 2024-10-18 10:36:06,593 - model.pytorch.models_supervisor - INFO - saving to data/log/itpgtn/20241018_103111_itpgtn_l_12_h_12_lr_0.001_bs_64/models//epo19.tar
-2024-10-18 10:36:19,810 - model.pytorch.models_supervisor - INFO - epoch complete
-2024-10-18 10:36:19,810 - model.pytorch.models_supervisor - INFO - evaluating now!
