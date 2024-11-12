@@ -1,7 +1,6 @@
 import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
-from sklearn.cluster import DBSCAN
 import argparse
 import yaml
 import torch
