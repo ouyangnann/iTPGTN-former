@@ -12,9 +12,6 @@ def main(args):
     with open(args.config_filename,encoding='utf-8') as f:
         supervisor_config = yaml.load(f, Loader=yaml.FullLoader)
         print('config_filename:',args.config_filename)
-        #supervisor_config is the config.yaml information
-        #print(adj_mx)
-        #adj_mx改变DCRNN节点结构，交通流数据是输入与输出
         supervisor = ModelsSupervisor( args.models, args.load_pretrained, args.pretrained_model_dir,args.config_filename,args.cuda,**supervisor_config)
 
         supervisor.train()
