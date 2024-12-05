@@ -2,6 +2,7 @@
 
 This repository contains the code for the paper **"Graph Transformer-based Dynamic Edge Interaction Encoding for Traffic Prediction"**.
 
+ **2024-12-5** Our paper has been accepted by IEEE Transactions on Intelligent Transportation Systems.  
 ## Table of Contents
 - [Introduction](#introduction)
 - [Environment](#environment)
