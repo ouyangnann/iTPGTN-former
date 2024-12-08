@@ -26,10 +26,10 @@ class Seq2SeqAttrs:
         self.num_heads = int(model_kwargs.get('num_heads'))
         self.num_encoder_layers = int(model_kwargs.get('num_encoder_layers'))
         self.batch_size = int(model_kwargs.get('batch_size'))
-        self.num_decoder_layers = int(model_kwargs.get('num_decoder_layers'))  # 解码器层数
+        self.num_decoder_layers = int(model_kwargs.get('num_decoder_layers'))  
         self.dropout = float(model_kwargs.get('dropout', 0.1))
-        self.seq_len = int(model_kwargs.get('seq_len'))  # for the encoder
-        self.horizon = int(model_kwargs.get('horizon'))  # for the decoder
+        self.seq_len = int(model_kwargs.get('seq_len')) 
+        self.horizon = int(model_kwargs.get('horizon'))
         # Add additional parameters required by GTNModel
 
         self.g_heads = int(model_kwargs.get('g_heads'))
@@ -37,14 +37,14 @@ class Seq2SeqAttrs:
         self.num_g_layers = int(model_kwargs.get('num_g_layers'))
         self.layer_norm = model_kwargs.get('layer_norm', True)
         self.use_bias = model_kwargs.get('use_bias', True)
-        self.batch_norm = model_kwargs.get('batch_norm', False) #已测试，False好
+        self.batch_norm = model_kwargs.get('batch_norm', False) 
         self.residual = model_kwargs.get('residual', True)
         self.edge_feat = model_kwargs.get('edge_feat', True)
         self.g_threshold = model_kwargs.get('g_threshold', True)
         self.pos_att = model_kwargs.get('pos_att', False)
         self.gck = model_kwargs.get('gck', False)
-        #self.num_atom_type = int(model_kwargs.get('num_atom_type', 10)) #节点类型
-        #self.num_bond_type = int(model_kwargs.get('num_bond_type', 4)) #边类型
+        #self.num_atom_type = int(model_kwargs.get('num_atom_type', 10)) 
+        #self.num_bond_type = int(model_kwargs.get('num_bond_type', 4)) 
         #self.readout = model_kwargs.get('readout', 'max')
         #self.dua_pos_enc = model_kwargs.get('lap_pos_enc', False)
         #self.sig_pos_enc = model_kwargs.get('wl_pos_enc', False)
@@ -126,21 +126,17 @@ class iTGTNModel(nn.Module, Seq2SeqAttrs):
         support.setdiag(0)
         support.eliminate_zeros()
 
-        # 将 scipy 稀疏矩阵转换为 DGL 图
         g = dgl.from_scipy(support)
-        # 提取边特征 - 节点间的距离
         edge_features = torch.from_numpy(support.data).float().view(-1, 1)
-        # 将边特征设置为 DGL 图的边数据
+       
         g.edata['e'] = edge_features
         
         src, dst = g.edges()
 
-        # 提取 diffusion_kernel 和 random_walk_kernel 对应边的值
-        # 这里假设 diffusion_kernel 和 random_walk_kernel 是 PyTorch Tensor
+    
         dk_values = diffusion_kernel[src, dst]
         rwk_values = random_walk_kernel[src, dst]
 
-        # 将核作为边的特征
         g.edata['Kr'] = dk_values.float().view(-1, 1)
        
         return g, edge_features, g.edata['Kr']
@@ -150,18 +146,16 @@ class iTGTNModel(nn.Module, Seq2SeqAttrs):
         """根据 adj_mx 计算图卷积所需的支持矩阵。"""
         supports = []
         adj_mx[adj_mx < threshold] = 0
-        # 定义图卷积中使用的滤波器类型
+      
         L_adj_sp= utils.calculate_normalized_laplacian(adj_mx)
         supports.append(L_adj_sp.astype(np.float32))
-        # 将邻接矩阵转变为稀疏矩阵
 
-        L = torch.tensor(L_adj_sp.astype(np.float32).todense())  # 转换为 PyTorch tensor
+        L = torch.tensor(L_adj_sp.astype(np.float32).todense())  
         diffusion_kernel, random_walk_kernel = self.calculate_diffusion_kernel(L, beta=1,gamma=0.5, p=2)
         
         for support in supports:
             g,e,kr = self.create_graph_structure(L_adj_sp, diffusion_kernel, random_walk_kernel)
-        #_laplacian_positional_encoding
-
+     
         return g,e,kr
 
    
