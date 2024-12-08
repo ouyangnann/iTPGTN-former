@@ -28,7 +28,7 @@ class Seq2SeqAttrs:
         self.num_heads = int(model_kwargs.get('num_heads', 8))
         self.num_encoder_layers = int(model_kwargs.get('num_encoder_layers', 2))
         self.batch_size = int(model_kwargs.get('batch_size', 128))
-        self.num_decoder_layers = int(model_kwargs.get('num_decoder_layers', 2))  # 解码器层数
+        self.num_decoder_layers = int(model_kwargs.get('num_decoder_layers', 2))  
         self.dropout = float(model_kwargs.get('dropout', 0.5))
         self.l1_decay = float(model_kwargs.get('l1_decay', 1.0e-5))
         self.seq_len = int(model_kwargs.get('seq_len'))  # for the encoder
@@ -36,30 +36,20 @@ class Seq2SeqAttrs:
         self.cl_decay_steps = int(model_kwargs.get('cl_decay_steps', 1000))
         self.use_curriculum_learning = bool(model_kwargs.get('use_curriculum_learning', True))
         # Add additional parameters required by GTNModel
-        #self.num_atom_type = int(model_kwargs.get('num_atom_type', 10)) #节点类型
-        #self.num_bond_type = int(model_kwargs.get('num_bond_type', 4)) #边类型
+       
         self.g_heads = int(model_kwargs.get('g_heads', 2))
-        #self.g_heads = int(model_kwargs.get('g_heads'))
         self.g_dim = int(model_kwargs.get('g_dim', 32))
         self.num_rnn_layers = int(model_kwargs.get('num_rnn_layers', 2))
         self.readout = model_kwargs.get('readout', 'max')
         self.layer_norm = model_kwargs.get('layer_norm', True)
         self.use_bias = model_kwargs.get('use_bias', True)
-        self.batch_norm = model_kwargs.get('batch_norm', False) #已测试，False好
+        self.batch_norm = model_kwargs.get('batch_norm', False)
         self.residual = model_kwargs.get('residual', True)
         self.edge_feat = model_kwargs.get('edge_feat', True)
         self.g_threshold = model_kwargs.get('g_threshold', True)
         self.pos_att = model_kwargs.get('pos_att', False)
         self.gck = model_kwargs.get('gck', False)
-        #self.dua_pos_enc = model_kwargs.get('lap_pos_enc', False)
-        #self.sig_pos_enc = model_kwargs.get('wl_pos_enc', False)
-      
-
-"""
-    Graph Transformer with edge features
-    
-"""
-
+   
 class iTGCNModel(nn.Module, Seq2SeqAttrs):
     def __init__(self, logger, cuda,**model_kwargs):
         nn.Module.__init__(self)
@@ -68,23 +58,23 @@ class iTGCNModel(nn.Module, Seq2SeqAttrs):
         self._logger = logger
         self.encoder = iTransformer(
                 num_variates = self.num_node,
-                lookback_len = self.seq_len,                  # or the lookback length in the paper
-                dim = self.model_dim,                          # model dimensions
-                depth = self.num_encoder_layers,                          # depth
-                heads = self.num_heads,                          # attention heads
-                dim_head = self.model_dim//2,                      # head dimension
-                pred_length = self.seq_len,     # can be one prediction, or many
-                num_tokens_per_variate = 1,         # experimental setting that projects each variate to more than one token. the idea is that the network can learn to divide up into time tokens for more granular attention across time. thanks to flash attention, you should be able to accommodate long sequence lengths just fine
+                lookback_len = self.seq_len,
+                dim = self.model_dim,                         
+                depth = self.num_encoder_layers,                      
+                heads = self.num_heads,                    
+                dim_head = self.model_dim//2,                   
+                pred_length = self.seq_len,    
+                num_tokens_per_variate = 1,     
                 use_reversible_instance_norm = False
             ) 
         self.decoder =  iTransformer(
                 num_variates = self.num_node,
-                lookback_len = self.seq_len,                  # or the lookback length in the paper
-                dim = self.dec_dim,                          # model dimensions
-                depth = self.num_decoder_layers,                          # depth
-                heads = self.num_heads,                          # attention heads
-                dim_head = self.dec_dim//2,                      # head dimension
-                pred_length = self.horizon,     # can be one prediction, or many
+                lookback_len = self.seq_len,                  
+                dim = self.dec_dim,                        
+                depth = self.num_decoder_layers,             
+                heads = self.num_heads,                      
+                dim_head = self.dec_dim//2,               
+                pred_length = self.horizon,    
                 num_tokens_per_variate = 1,         # experimental setting that projects each variate to more than one token. the idea is that the network can learn to divide up into time tokens for more granular attention across time. thanks to flash attention, you should be able to accommodate long sequence lengths just fine
                 use_reversible_instance_norm = False
             ) 
@@ -130,37 +120,29 @@ class iTGCNModel(nn.Module, Seq2SeqAttrs):
         support = support.tocoo()
         support.setdiag(0)
         support.eliminate_zeros()
-
-        # 将 scipy 稀疏矩阵转换为 DGL 图
         g = dgl.from_scipy(support)
-        # 提取边特征 - 节点间的距离
+   
         edge_features = torch.from_numpy(support.data).float().view(-1, 1)
-        # 将边特征设置为 DGL 图的边数据
+    
         g.edata['e'] = edge_features
         
         src, dst = g.edges()
 
-        # 提取 diffusion_kernel 和 random_walk_kernel 对应边的值
-        # 这里假设 diffusion_kernel 和 random_walk_kernel 是 PyTorch Tensor
         dk_values = diffusion_kernel[src, dst]
         rwk_values = random_walk_kernel[src, dst]
 
-        # 将核作为边的特征
+    
         g.edata['Kr'] = dk_values.float().view(-1, 1)
        
         return g, edge_features, g.edata['Kr']
 
     def _calculate_supports(self, adj_mx, threshold):
 
-        """根据 adj_mx 计算图卷积所需的支持矩阵。"""
         supports = []
-        adj_mx[adj_mx < threshold] = 0
-        # 定义图卷积中使用的滤波器类型
+        adj_mx[adj_mx < threshold] = 0      
         L_adj_sp= utils.calculate_normalized_laplacian(adj_mx)
         supports.append(L_adj_sp.astype(np.float32))
-        # 将邻接矩阵转变为稀疏矩阵
-
-        L = torch.tensor(L_adj_sp.astype(np.float32).todense())  # 转换为 PyTorch tensor
+        L = torch.tensor(L_adj_sp.astype(np.float32).todense()) 
         diffusion_kernel, random_walk_kernel = self.calculate_diffusion_kernel(L, beta=1,gamma=0.5, p=2)
         
         for support in supports:
@@ -284,11 +266,7 @@ class iTGCNModel(nn.Module, Seq2SeqAttrs):
         hg = self.g_upemb_lin(hg)
 
         memory = src + hg 
-        #rb_out = self.rb_out(src)
-        # 准备初始的解码器输入，这里我们取memory的最后一部分作为初始输入
-        
 
-        # 传递整个序列给解码器堆栈
         decoder_output = self.decoder(memory)
         output = decoder_output[self.horizon]
         #output = self.output_layer(output)
