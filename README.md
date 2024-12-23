@@ -86,3 +86,16 @@ To set up the environment, you can use the following steps:
   ```bash
   sh test.sh
   ```
+
+
+ ## Citations:
+ 
+  ```bash
+  @article{ouyang2024graph,
+    title={Graph Transformer-Based Dynamic Edge Interaction Encoding for Traffic Prediction},
+    author={Ouyang, Nan and Ao, Lei and Cai, Qing and Wan, Wenkang and Ren, Xiaojiang and He, Xin and Sheng, Kai},
+    journal={IEEE Transactions on Intelligent Transportation Systems},
+    year={2024},
+    publisher={IEEE}
+  }
+```
