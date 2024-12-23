@@ -10,6 +10,8 @@ This repository contains the code for the paper **"Graph Transformer-based Dynam
 - [Usage](#usage)
   - [Dataset Preparation](#dataset-preparation)
   - [Training and Testing](#training-and-testing)
+- [Citations](#Citations)
+
 
 ## Introduction
 We propose a dynamic edge interaction encoding method for spatio-temporal features based on inverse Transformer (iTransformer) and Graph Transformer, named iTPGTN-former.
@@ -57,38 +59,36 @@ To set up the environment, you can use the following steps:
 ## Usage
  ## Dataset Preparation:
  
-  **First, download the required datasets. See data/readme.md.**
+1. **First, download the required datasets. See data/readme.md.**
 
-  Then, process the dataset using the following command:
+2. **Using the following commands to process the dataset.**
   
-  METR-LA and PEMS-04:
-  ```bash
-  python scripts/generate_training_data_metr_in_ou.py --seq_len 12 --horizon 12
-  python scripts/gen_adj_mx.py 
-  ```
-  
-  PEMS03, PEMS04, PEMS07, and PEMS08:
-  
-  ```bash
-  python scripts/generate_training_data_pems0408_in_ou.py --seq_len 12 --horizon 12
-  python scripts/gen_adj_mx0408.py 
-  ```
-  For different prediction horizons, seq_len and horizon are optional.
+    METR-LA and PEMS-04:
+    ```bash
+    python scripts/generate_training_data_metr_in_ou.py --seq_len 12 --horizon 12
+    python scripts/gen_adj_mx.py 
+    ```
+    
+    PEMS03, PEMS04, PEMS07, and PEMS08:
+    
+    ```bash
+    python scripts/generate_training_data_pems0408_in_ou.py --seq_len 12 --horizon 12
+    python scripts/gen_adj_mx0408.py 
+    ```
+    For different prediction horizons, seq_len and horizon are optional.
 
- ## Training and Testing:
-  Train the model: Run the run.sh script to start training:
-  ```bash
-  sh run.sh
-  ```
+## Training and Testing
+1. **Train the model: Run the run.sh script to start training.**
+    ```bash
+    sh run.sh
+    ```
   
-  Test the model: Use the test.sh script to evaluate the trained model:
-  
-  ```bash
-  sh test.sh
-  ```
-
-
- ## Citations:
+2. **Test the model: Use the test.sh script to evaluate the trained model.**
+    ```bash
+    sh test.sh
+    ```
+    
+ ## Citations
  
   ```bash
   @article{ouyang2024graph,
