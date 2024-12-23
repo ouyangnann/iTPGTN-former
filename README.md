@@ -57,7 +57,7 @@ To set up the environment, you can use the following steps:
    ```
   
 ## Usage
- ## Dataset Preparation:
+ ## Dataset Preparation
  
 1. **First, download the required datasets. See data/readme.md.**
 
