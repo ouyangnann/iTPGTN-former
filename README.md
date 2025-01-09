@@ -27,6 +27,7 @@ The code is developed and tested on **Ubuntu 20.04**. The required libraries and
   - `dgl==2.4.0+cu118`
   - `iTransformer`
   - `matplotlib`
+  - `pandas`
   - `tables`
 
 ## Installation
